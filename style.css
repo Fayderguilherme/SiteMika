@@ -1,0 +1,416 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #000;
+    color: #ffffff;
+    font-family: 'Playfair Display', serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* ========================================== */
+/* MODO APLICATIVO (BLOQUEIA CÓPIA E CLIQUES) */
+/* ========================================== */
+
+/* Impede que os textos do site sejam selecionados ou copiados */
+body {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* Navegadores antigos */
+    user-select: none; /* Navegadores modernos */
+}
+
+/* Impede que as imagens sejam arrastadas ou baixadas com o clique longo no celular */
+img {
+    pointer-events: none; 
+    -webkit-user-drag: none;
+}
+
+/* Tipografia */
+.titulo-romantico {
+    font-family: 'Alex Brush', cursive;
+    font-size: 4.5rem;
+    color: #f7ede2;
+    margin-bottom: 15px;
+    font-weight: 400;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+/* Tela de Entrada */
+#tela-entrada {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* Fundo escuro, mas levemente transparente com desfoque no vídeo */
+    background-color: rgba(0, 0, 0, 0.80);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1.2s ease, visibility 1.2s;
+    padding: 20px;
+}
+
+/* ========================================== */
+/* CAIXA DE ENTRADA (VISUAL ORIGINAL CORRIGIDO)*/
+/* ========================================== */
+.card-entrada {
+    text-align: center; /* Volta ao alinhamento original perfeito */
+    max-width: 450px;
+    width: 90%; /* Garante que não vai encostar nas bordas do celular */
+    
+    /* O fundo de paixão com efeito de vidro */
+    background: linear-gradient(135deg, rgba(201, 24, 74, 0.25), rgba(20, 10, 15, 0.75));
+    padding: 40px 30px;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 117, 143, 0.25);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 35px rgba(201, 24, 74, 0.2); 
+}
+
+.card-entrada p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 15px; /* Margem reduzida para encaixar o vídeo */
+    font-weight: 300;
+}
+
+/* ========================================== */
+/* ESTILO DO BANNER DO VÍDEO DE RECADO        */
+/* ========================================== */
+.banner-video-mensagem {
+    width: 100%;
+    max-width: 260px; /* Tamanho exato para não "vazar" da caixa */
+    margin: 15px auto 25px auto; /* Separa certinho do texto acima e do botão abaixo */
+    padding: 8px; /* Espessura da moldura */
+    
+    /* Moldura romântica do vídeo */
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 117, 143, 0.4);
+    border-radius: 18px; 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+#video-recado {
+    width: 100%;
+    border-radius: 12px; 
+    display: block; 
+    outline: none; 
+}
+
+#video-recado {
+    width: 100%;
+    border-radius: 12px; /* Arredonda os cantos do próprio vídeo */
+    display: block; /* Evita uma margem branca indesejada embaixo do vídeo */
+    outline: none; /* Remove aquela borda azul feia quando clica */
+}
+
+#btn-iniciar {
+    font-family: 'Poppins', sans-serif;
+    padding: 14px 45px;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid white;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Adicionando a animação de pulsar */
+    animation: pulsarBotao 2s infinite;
+}
+
+#btn-iniciar:hover {
+    background: white;
+    color: black;
+    animation: none; /* Para a animação quando passa o mouse */
+    transform: scale(1.05);
+}
+
+@keyframes pulsarBotao {
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+    70% { box-shadow: 0 0 15px 15px rgba(255, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+/* VÍDEO DE FUNDO FIXO */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+#video-fundo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pelicula-contraste {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1;
+}
+
+/* ÁREA DE MENSAGENS E BANNERS COM FOTOS */
+.conteudo-scroll {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+
+.secao-texto {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* O Cartão Principal (Texto + Foto flutuando - Começa na ESQUERDA) */
+.mensagem-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 950px;
+    width: 100%;
+    padding: 20px;
+    
+    /* Nova Animação: Escondido na lateral esquerda */
+    opacity: 0;
+    transform: translateX(-100px); 
+    transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Ativa a animação ao rolar (Volta para o centro) */
+.mensagem-card.aparecer {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Alternar as posições (Inverte a ordem nas seções pares E esconde na DIREITA) */
+.secao-texto:nth-child(even) .mensagem-card {
+    flex-direction: row-reverse;
+    transform: translateX(100px); 
+}
+
+/* Garante que a mensagem par também venha para o centro quando ativada */
+.secao-texto:nth-child(even) .mensagem-card.aparecer {
+    transform: translateX(0);
+}
+
+/* Formatação do Texto no Banner */
+.texto-mensagem {
+    flex: 1; /* Faz o texto ocupar o espaço restante */
+}
+
+.texto-mensagem p {
+    font-size: 1.6rem;
+    line-height: 1.7;
+    font-weight: 300;
+    /* Sombra dupla mais forte para dar destaque total na leitura */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9), 0px 0px 5px rgba(0, 0, 0, 0.7);
+}
+
+.assinatura {
+    font-family: 'Alex Brush', cursive;
+    font-size: 3rem;
+    color: #e8d5c4;
+    margin-top: 20px;
+    font-weight: 400;
+}
+
+/* A Foto ao lado (O "Quadradinho") */
+.imagem-mensagem img {
+    width: 280px;
+    height: 280px;
+    object-fit: cover; /* Garante que a foto preencha o quadrado perfeitamente */
+    border-radius: 15px;
+    border: 4px solid rgba(255, 255, 255, 0.8); /* Borda imitando foto impressa */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+    transform: rotate(3deg); /* Dá um charme, como se a foto estivesse solta na mesa */
+    transition: transform 0.4s ease;
+}
+
+.secao-texto:nth-child(even) .imagem-mensagem img {
+    transform: rotate(-3deg); /* Gira para o outro lado nas fotos alternadas */
+}
+
+.imagem-mensagem img:hover {
+    transform: rotate(0deg) scale(1.05); /* Interação ao passar o mouse */
+}
+
+/* Animação da setinha */
+.seta-rolar {
+    display: inline-block;
+    margin-top: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    animation: flutuar 2s infinite;
+}
+
+@keyframes flutuar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+
+/* Adaptação para Celular (Uma coluna em vez de duas) */
+@media (max-width: 850px) {
+    .mensagem-card, .secao-texto:nth-child(even) .mensagem-card {
+        flex-direction: column; /* Coloca a foto em cima do texto no celular */
+        text-align: center;
+        padding: 30px 20px;
+    }
+    
+    .imagem-mensagem img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        aspect-ratio: 1/1;
+    }
+    
+    .titulo-romantico {
+    font-family: 'Alex Brush', cursive;
+    font-size: 4.5rem;
+    color: #f7ede2;
+    margin-bottom: 15px;
+    font-weight: 400;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9), 0px 0px 5px rgba(0, 0, 0, 0.7);
+}
+    .texto-mensagem p { font-size: 1.3rem; }
+}
+
+
+/* ========================================== */
+/* LINHA DE CALIGRAFIA (DESENHADA AO ROLAR)   */
+/* ========================================== */
+#linha-desenho {
+    position: fixed;
+    top: 0;
+    left: 40px; /* Fica no canto esquerdo, guiando sem encostar no conteúdo */
+    width: 3px;
+    height: 0%; /* Inicia zerada, o JavaScript fará ela crescer */
+    /* Efeito de tinta: começa transparente e fica forte na ponta */
+    background: linear-gradient(to bottom, rgba(255, 117, 143, 0.05), #ff4d6d);
+    border-radius: 50px;
+    z-index: 99;
+    box-shadow: -2px 0 15px rgba(255, 77, 109, 0.6);
+}
+
+.ponta-caneta {
+    position: absolute;
+    bottom: -15px; /* Fixa o brilho exatamente na ponta da linha que está descendo */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    text-shadow: 0 0 15px rgba(255, 117, 143, 1);
+}
+
+/* Proteção extra para o Celular */
+@media (max-width: 850px) {
+    #linha-desenho {
+        left: 15px; /* No celular, a linha fica bem coladinha no canto */
+    }
+    .mensagem-card {
+        margin-left: 20px; /* Empurra os cartões para a direita, para a linha passar livre */
+    }
+}
+
+/* ========================================== */
+/* O GRAN FINALE (MURAL COM 10 FOTOS MENORES) */
+/* ========================================== */
+.secao-final {
+    min-height: auto; 
+    padding-bottom: 100px; 
+}
+
+.quadro-final {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+    border-radius: 25px;
+    padding: 50px 30px;
+    text-align: center;
+    max-width: 850px; /* Caixa levemente mais larga para acomodar 5 colunas */
+    width: 100%;
+    margin: 0 auto;
+    
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.quadro-final.aparecer {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quadro-final p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+/* A Grade (Grid) reajustada para 10 fotos */
+.galeria-fotos {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Cria 5 colunas */
+    gap: 15px; /* Espaço entre as fotos */
+}
+
+.galeria-fotos img {
+    width: 100%;
+    height: 110px; /* Altura reduzida para caber tudo na caixa */
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    transition: transform 0.4s ease, z-index 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+
+/* Efeito de fotos bagunçadas de forma aleatória */
+.galeria-fotos img:nth-child(even) { transform: rotate(3deg); }
+.galeria-fotos img:nth-child(odd) { transform: rotate(-3deg); }
+.galeria-fotos img:nth-child(3n) { transform: rotate(-5deg); }
+.galeria-fotos img:nth-child(4n) { transform: rotate(4deg); }
+
+/* Quando passa o mouse/dedo, a foto vem para frente, endireita e dá um super zoom */
+.galeria-fotos img:hover {
+    transform: scale(1.4) rotate(0deg) !important;
+    z-index: 10;
+}
+
+/* Ajustes inteligentes para Celular */
+@media (max-width: 700px) {
+    .galeria-fotos {
+        grid-template-columns: repeat(3, 1fr); /* No celular deitado, 3 colunas */
+    }
+}
+
+@media (max-width: 450px) {
+    .galeria-fotos {
+        grid-template-columns: repeat(2, 1fr); /* No celular em pé, 2 colunas */
+    }
+    .galeria-fotos img {
+        height: 120px;
+    }
+}
