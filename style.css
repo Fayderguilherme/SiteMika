@@ -333,11 +333,11 @@ img {
 }
 
 /* ========================================== */
-/* O GRAN FINALE (MURAL COM 10 FOTOS MENORES) */
+/* O GRAN FINALE (MURAL DE FOTOS)             */
 /* ========================================== */
 .secao-final {
-    min-height: auto; 
-    padding-bottom: 100px; 
+    min-height: auto; /* Não precisa ocupar a tela inteira */
+    padding-bottom: 100px; /* Dá um respiro bom no final do site */
 }
 
 .quadro-final {
@@ -348,15 +348,17 @@ img {
     border-radius: 25px;
     padding: 50px 30px;
     text-align: center;
-    max-width: 850px; /* Caixa levemente mais larga para acomodar 5 colunas */
+    max-width: 800px;
     width: 100%;
     margin: 0 auto;
     
+    /* Prepara a animação de entrada */
     opacity: 0;
     transform: translateY(60px);
     transition: opacity 1.2s ease-out, transform 1.2s ease-out;
 }
 
+/* Quando a animação for ativada pelo JS */
 .quadro-final.aparecer {
     opacity: 1;
     transform: translateY(0);
@@ -368,49 +370,57 @@ img {
     font-weight: 300;
 }
 
-/* A Grade (Grid) reajustada para 10 fotos */
+/* A Grade (Grid) onde as 4 fotos vão se encaixar */
 .galeria-fotos {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Cria 5 colunas */
-    gap: 15px; /* Espaço entre as fotos */
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas */
+    gap: 20px;
 }
 
 .galeria-fotos img {
     width: 100%;
-    height: 110px; /* Altura reduzida para caber tudo na caixa */
+    height: 220px;
     object-fit: cover;
-    border-radius: 8px;
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    border-radius: 10px;
+    border: 3px solid rgba(255, 255, 255, 0.8); /* Bordinha de foto impressa */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
     transition: transform 0.4s ease, z-index 0.4s ease;
     position: relative;
     z-index: 1;
 }
 
-/* Efeito de fotos bagunçadas de forma aleatória */
-.galeria-fotos img:nth-child(even) { transform: rotate(3deg); }
-.galeria-fotos img:nth-child(odd) { transform: rotate(-3deg); }
-.galeria-fotos img:nth-child(3n) { transform: rotate(-5deg); }
-.galeria-fotos img:nth-child(4n) { transform: rotate(4deg); }
+/* Efeito de fotos levemente bagunçadas na mesa */
+.galeria-fotos img:nth-child(1) { transform: rotate(-3deg); }
+.galeria-fotos img:nth-child(2) { transform: rotate(4deg); }
+.galeria-fotos img:nth-child(3) { transform: rotate(2deg); }
+.galeria-fotos img:nth-child(4) { transform: rotate(-4deg); }
 
-/* Quando passa o mouse/dedo, a foto vem para frente, endireita e dá um super zoom */
+/* Quando passa o mouse/dedo, a foto vem para frente, endireita e cresce */
 .galeria-fotos img:hover {
-    transform: scale(1.4) rotate(0deg) !important;
+    transform: scale(1.1) rotate(0deg) !important;
     z-index: 10;
 }
 
-/* Ajustes inteligentes para Celular */
-@media (max-width: 700px) {
+/* Ajuste para não ficar espremido no Celular */
+@media (max-width: 600px) {
     .galeria-fotos {
-        grid-template-columns: repeat(3, 1fr); /* No celular deitado, 3 colunas */
+        grid-template-columns: 1fr; /* Fica 1 foto embaixo da outra */
+    }
+    .galeria-fotos img {
+        height: 250px;
     }
 }
 
-@media (max-width: 450px) {
-    .galeria-fotos {
-        grid-template-columns: repeat(2, 1fr); /* No celular em pé, 2 colunas */
+@media (max-width: 768px) {
+    .mensagem-card {
+        flex-direction: column; /* Muda de lado a lado para um embaixo do outro */
+        text-align: center;     /* Centraliza o texto no celular */
+        gap: 20px;              /* Diminui o espaço entre texto e foto */
+        transform: none;        /* Opcional: remove o deslocamento lateral no celular */
     }
-    .galeria-fotos img {
-        height: 120px;
+
+    .mensagem-card img {
+        width: 100%;            /* Garante que a foto não ultrapasse a tela */
+        height: auto;
     }
 }
