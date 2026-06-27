@@ -186,6 +186,14 @@ img {
     padding: 40px 20px;
 }
 
+.secao-final {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
 /* O Cartão Principal (Texto + Foto flutuando - Começa na ESQUERDA) */
 .mensagem-card {
     display: flex;
