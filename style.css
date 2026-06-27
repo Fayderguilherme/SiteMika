@@ -401,26 +401,20 @@ img {
     z-index: 10;
 }
 
-/* Ajuste para não ficar espremido no Celular */
-@media (max-width: 600px) {
-    .galeria-fotos {
-        grid-template-columns: 1fr; /* Fica 1 foto embaixo da outra */
-    }
-    .galeria-fotos img {
-        height: 250px;
-    }
-}
-
 @media (max-width: 768px) {
-    .mensagem-card {
-        flex-direction: column; /* Muda de lado a lado para um embaixo do outro */
-        text-align: center;     /* Centraliza o texto no celular */
-        gap: 20px;              /* Diminui o espaço entre texto e foto */
-        transform: none;        /* Opcional: remove o deslocamento lateral no celular */
+    /* Força todas as seções de texto a virarem coluna */
+    .secao-texto {
+        flex-direction: column !important;
+        min-height: auto !important; /* Remove o bloqueio de altura fixa */
+        padding: 20px !important;
     }
 
-    .mensagem-card img {
-        width: 100%;            /* Garante que a foto não ultrapasse a tela */
-        height: auto;
+    /* Força o cartão a ocupar toda a largura e remover deslocamentos */
+    .mensagem-card {
+        flex-direction: column !important;
+        transform: none !important; 
+        opacity: 1 !important; /* Garante que ela apareça */
+        width: 100% !important;
+        margin: 0 !important;
     }
 }
