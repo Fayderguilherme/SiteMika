@@ -85,21 +85,33 @@ if (quadroFinal) {
 // Exemplo de como deve ficar o seu evento de clique no botão
 const botaoAbrir = document.querySelector('.botao-abrir'); // Ajuste o nome da classe do seu botão
 
-// Garante que o scroll comece travado quando a página abre
+// 1. Garante que o scroll comece travado quando a página abre
 document.body.classList.add('scroll-bloqueado');
 
-// Lógica de clique do botão
-botaoAbrir.addEventListener('click', () => {
-    // 1. Remove a trava de scroll para permitir a leitura
+// 2. Lógica única para o botão
+const btnIniciar = document.getElementById('btn-iniciar');
+
+btnIniciar.addEventListener('click', () => {
+    // Remove a classe do body
     document.body.classList.remove('scroll-bloqueado');
     
-    // 2. Garante que a página comece exatamente no topo
+    // Remove qualquer estilo "inline" que possa ter ficado preso no body
+    document.body.style.overflow = ''; 
+    document.body.style.height = '';
+
+    // Garante o scroll para o topo de forma instantânea
     window.scrollTo({
         top: 0,
         behavior: 'instant' 
     });
 
-    // 3. Opcional: Se você estiver usando a biblioteca 'AOS' ou 'ScrollReveal'
-    // que parece ser o caso pelo seu código, tente disparar um refresh:
-    // AOS.refresh(); 
+    // Seus outros códigos de transição (que já estavam funcionando)
+    telaEntrada.style.opacity = '0';
+    setTimeout(() => {
+        telaEntrada.style.visibility = 'hidden';
+    }, 1200);
+
+    musica.play().catch(error => {
+        console.log("Autoplay bloqueado:", error);
+    });
 });

@@ -428,8 +428,12 @@ img {
     word-wrap: break-word;
 }
 
-/* Trava a rolagem da página */
+/* Remova o "overflow-y: auto" do body lá no final do arquivo */
+/* Apenas a classe .scroll-bloqueado deve gerenciar isso */
+
 body.scroll-bloqueado {
-    overflow: hidden;
-    height: 100vh;
+    overflow: hidden !important;
+    height: 100vh !important;
+    position: fixed; /* Adicione isso: trava a posição do body no topo */
+    width: 100%;
 }
