@@ -427,3 +427,9 @@ img {
     font-size: 1.5rem !important; /* Diminui a fonte no celular para caber */
     word-wrap: break-word;
 }
+
+/* Trava a rolagem da página */
+body.scroll-bloqueado {
+    overflow: hidden;
+    height: 100vh;
+}

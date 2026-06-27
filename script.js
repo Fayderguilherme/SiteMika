@@ -85,14 +85,21 @@ if (quadroFinal) {
 // Exemplo de como deve ficar o seu evento de clique no botão
 const botaoAbrir = document.querySelector('.botao-abrir'); // Ajuste o nome da classe do seu botão
 
-// No início, o body deve estar travado (você pode colocar a classe no body via HTML ou aqui no JS)
-document.body.classList.add('scroll-travado');
+// Garante que o scroll comece travado quando a página abre
+document.body.classList.add('scroll-bloqueado');
 
+// Lógica de clique do botão
 botaoAbrir.addEventListener('click', () => {
-    // 1. Toca o som (seu código atual)
-    // 2. Libera a rolagem:
-    document.body.classList.remove('scroll-travado');
+    // 1. Remove a trava de scroll para permitir a leitura
+    document.body.classList.remove('scroll-bloqueado');
     
-    // 3. Opcional: faz o scroll suave para a primeira seção
-    document.querySelector('.secao-texto').scrollIntoView({ behavior: 'smooth' });
+    // 2. Garante que a página comece exatamente no topo
+    window.scrollTo({
+        top: 0,
+        behavior: 'instant' 
+    });
+
+    // 3. Opcional: Se você estiver usando a biblioteca 'AOS' ou 'ScrollReveal'
+    // que parece ser o caso pelo seu código, tente disparar um refresh:
+    // AOS.refresh(); 
 });
