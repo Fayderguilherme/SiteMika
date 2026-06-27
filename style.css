@@ -401,20 +401,24 @@ img {
     z-index: 10;
 }
 
+/* Isso garante que no celular o layout vire uma coluna */
 @media (max-width: 768px) {
-    /* Força todas as seções de texto a virarem coluna */
-    .secao-texto {
-        flex-direction: column !important;
-        min-height: auto !important; /* Remove o bloqueio de altura fixa */
-        padding: 20px !important;
+    .mensagem-card {
+        flex-direction: column !important; /* Força o texto e a foto a ficarem um em cima do outro */
+        text-align: center;
+        gap: 20px;
     }
 
-    /* Força o cartão a ocupar toda a largura e remover deslocamentos */
-    .mensagem-card {
-        flex-direction: column !important;
-        transform: none !important; 
-        opacity: 1 !important; /* Garante que ela apareça */
-        width: 100% !important;
-        margin: 0 !important;
+    /* Ajusta a foto para não estourar a tela */
+    .imagem-mensagem img {
+        width: 100%;
+        max-width: 300px; /* Ajuste o tamanho conforme preferir */
+        height: auto;
     }
+}
+
+/* Garante que títulos grandes não quebrem o layout no celular */
+.titulo-romantico {
+    font-size: 1.5rem !important; /* Diminui a fonte no celular para caber */
+    word-wrap: break-word;
 }
