@@ -1,3 +1,8 @@
+.scroll-travado {
+    overflow: hidden; /* Isso impede a barra de rolagem de aparecer */
+    height: 100vh;    /* Trava a altura na tela do celular */
+}
+
 * {
     margin: 0;
     padding: 0;

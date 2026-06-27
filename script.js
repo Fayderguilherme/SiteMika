@@ -81,3 +81,18 @@ const quadroFinal = document.querySelector('.quadro-final');
 if (quadroFinal) {
     observerQuadroFinal.observe(quadroFinal);
 }
+
+// Exemplo de como deve ficar o seu evento de clique no botão
+const botaoAbrir = document.querySelector('.botao-abrir'); // Ajuste o nome da classe do seu botão
+
+// No início, o body deve estar travado (você pode colocar a classe no body via HTML ou aqui no JS)
+document.body.classList.add('scroll-travado');
+
+botaoAbrir.addEventListener('click', () => {
+    // 1. Toca o som (seu código atual)
+    // 2. Libera a rolagem:
+    document.body.classList.remove('scroll-travado');
+    
+    // 3. Opcional: faz o scroll suave para a primeira seção
+    document.querySelector('.secao-texto').scrollIntoView({ behavior: 'smooth' });
+});
